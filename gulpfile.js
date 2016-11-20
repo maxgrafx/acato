@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     path = require('path'),
+    babel = require("gulp-babel"),
     sourcemaps = require('gulp-sourcemaps'),
     fs = require('fs'),
     del = require('del'),
@@ -41,14 +42,26 @@ gulp.task('watch', function() {
         'assets/sass/dev/**/*.scss',
         'assets/sass/imports/**/*.scss',
     ], ['sass']).on('error', watchError);
+    gulp.watch([
+        'assets/js/dev/**/*.js',
+        'assets/js/lib/**/*.js',
+    ], ['js']).on('error', watchError);
 
 });
-
+gulp.task("js", function () {
+  return gulp.src("assets/js/dev/app.js")
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(concat("app.js"))
+    .pipe(sourcemaps.write("../build"))
+    .pipe(gulp.dest("assets/js/build"));
+});
 gulp.task('default', function() {
     del('assets/js/build/**/*');
     del('assets/sass/build/**/*');
     var tasks = [];
     tasks.push('sass');
+    tasks.push('js');
     tasks.push('watch');
     tasks.push('end');
     gulp.start(tasks);

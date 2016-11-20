@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":["Test","test"],"mappings":"AAAA,SAASA,IAAT,QAAqB,gBAArB;AACA,MAAMC,OAAO,IAAID,IAAJ,EAAb","file":"../dev/app.js","sourcesContent":["import { Test } from '../../lib/test';\nconst test = new Test();"]}
