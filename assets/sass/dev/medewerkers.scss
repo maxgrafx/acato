@@ -1,0 +1,82 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+.employees {
+    [class*="col-"] {
+        padding: 0;
+    }
+    &:hover {
+        .img {
+            &:before {
+                background-color: rgba(#fff, .6);
+            }
+        }
+    }
+    .img {
+        background-position: center;
+        background-size: cover;
+        margin: 1rem;
+        
+        &:before {
+            content: '';
+            position: absolute;
+            background-color: rgba(#fff, 0);
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            transition: background-color 350ms ease-in-out;
+        }
+        .desc-wrapper{
+        	position: absolute;
+            top: 100%;
+        	transform-origin: bottom;
+	        perspective-origin: center;
+	        transform: perspective(450px);
+	        transform-style: preserve-3d;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .desc {
+            background-color: #eee;
+            padding: 10px;
+            transform: rotate3d(1, 0, 0, -110deg);
+            transform-origin: top;
+            transition: transform 350ms ease-in-out;
+        }
+        &:hover {
+            &:before {
+                background-color: rgba(#fff, 0);
+            }
+            .desc-wrapper{
+            	pointer-events: all;
+            }
+            .desc {
+                transform: rotate3d(1, 0, 0, 0deg);
+            }
+        }
+    }
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    /* desired width */
+    >div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.box:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+    /* initial ratio of 1:1*/
+}
