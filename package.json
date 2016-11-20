@@ -1,0 +1,30 @@
+{
+  "name": "acato-medewerkers-pagina",
+  "version": "1.0.0",
+  "description": "Acato medewerkers pagina",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://maxtroost@bitbucket.org/maxtroost/acato.git"
+  },
+  "author": "Max Troost",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/maxtroost/acato#readme",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "del": "^2.2.2",
+    "graceful-fs": "^4.1.10",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-watch": "^4.3.11",
+    "minimatch": "^3.0.3"
+  }
+}
