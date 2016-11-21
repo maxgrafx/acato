@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
+    webpack = require('gulp-webpack'),
     rename = require('gulp-rename'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
@@ -9,7 +10,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     fs = require('fs'),
     del = require('del'),
-    end_dependencies = ['sass'],
+    end_dependencies = ['sass', 'js'],
     watchError = function(event) {
         console.log('Event type: ' + event.type); // added, changed, or deleted
         console.log('Event path: ' + event.path); // The path of the modified file
@@ -48,13 +49,26 @@ gulp.task('watch', function() {
     ], ['js']).on('error', watchError);
 
 });
-gulp.task("js", function () {
-  return gulp.src("assets/js/dev/app.js")
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat("app.js"))
-    .pipe(sourcemaps.write("../build"))
-    .pipe(gulp.dest("assets/js/build"));
+gulp.task("js", function() {
+    return gulp.src("assets/js/dev/app.js")
+        .pipe(babel())
+        .pipe(webpack({
+            watch: true,
+            output: {
+                path: path.resolve(__dirname, 'build'),
+                filename: 'app.js'
+            },
+            module: {
+                loaders: [{
+                    test: /\.js$/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: ['es2015']
+                    }
+                }, ],
+            },
+        }))
+        .pipe(gulp.dest("assets/js/build"));
 });
 gulp.task('default', function() {
     del('assets/js/build/**/*');
