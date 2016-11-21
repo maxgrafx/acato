@@ -1,8 +1,8 @@
-class Test {
-    static createActions(actions) {
-        console.log(actions);
-        const bla = 2;
+import Point from '../lib/point';
+export default class Test {
+    constructor(){
+    	let point = new Point(101, 50);
+    	console.log(point);
     }
 }
 
-export { Test };
