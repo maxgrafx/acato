@@ -1,14 +1,22 @@
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/normalize";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/type";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/grid";
-
+@import "node_modules/bootstrap/scss/variables";
+$enable-flex: true;
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/normalize";
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/utilities";
+header{
+    height: 60vh;
+    background-image: url(../../images/header.jpg);
+    background-position: center;
+    background-size: cover;
+}
+footer{
+    height: 25vh;
+    background-color: darken(#21b7dc,30);
+}
 .employees {
-    [class*="col-"] {
-        padding: 0;
-    }
     &:hover {
         .img {
             &:before {
@@ -51,9 +59,10 @@
             transform: rotate3d(1, 0, 0, -90deg);
             transform-origin: top;
             transition: transform 350ms ease-in-out;
-            h4,p {
+            h4,
+            p {
                 opacity: 0;
-            	transition: opacity 350ms ease-in-out 200ms;
+                transition: opacity 350ms ease-in-out 200ms;
             }
         }
         &:hover {
@@ -66,7 +75,7 @@
             }
             .desc {
                 transform: rotate3d(1, 0, 0, 0deg);
-                h4 {
+                h5 {
                     opacity: 1;
                 }
                 p {
