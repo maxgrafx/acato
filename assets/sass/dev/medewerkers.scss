@@ -1,3 +1,5 @@
+$icomoon-font-path: "../../icomoon/fonts/";
+@import "assets/icomoon/style.scss";
 @import "node_modules/bootstrap/scss/variables";
 $enable-flex: true;
 @import "node_modules/bootstrap/scss/mixins";
@@ -85,6 +87,119 @@ footer {
                 }
                 p {
                     opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.form {
+    h1 {
+        color: #21b7dc;
+    }
+    p {
+        color: #666;
+    }
+    background-color: #eee;
+    .input-col {
+        perspective-origin: center;
+        transform: perspective(450px) translate3d(0, 0, 0);
+        transform-style: preserve-3d;
+    }
+    input,
+    textarea {
+        color: #333;
+        position: relative;
+        width: 100%;
+        border: transparent;
+        background-color: transparent;
+        outline: none;
+        appearance: none;
+        z-index: 10;
+        +label {
+            background-color: transparent;
+            transition: background-color 800ms ease-out 300ms;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            right: 15px;
+            height: 100%;
+            z-index: 1;
+            margin: 0;
+            i[class^="icon-"] {
+                position: absolute;
+                top: 0.7rem;
+                right: 0.7rem;
+                z-index: 2;
+                font-size: 2rem;
+                opacity: 1;
+                transition: opacity 350ms ease-out, transform 350ms ease-out;
+            }
+            i.icon-times-outline {
+                opacity: 0;
+                transform: translate3d(50%, 0, 0);
+                transition: opacity 350ms ease-out, transform 350ms ease-out;
+            }
+            &:after {
+                content: "";
+                position: absolute;
+                background-color: rgba(#fff, 1);
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                transition: background-color 350ms ease-in-out, transform 350ms ease-out;
+                transform-origin: bottom;
+            }
+            &:before {
+                content: "";
+                z-index: 1;
+                position: absolute;
+                background-color: rgba(#21b7dc, 0);
+                height: 2px;
+                width: 100%;
+                bottom: 0;
+                transform: translate3d(0, 4px, 0) scaleY(0);
+                transition: background-color 350ms ease-in-out, transform 350ms ease-out;
+            }
+            &.invalid {
+                i[class^="icon-"] {
+                    opacity: 0;
+                    transform: translate3d(50%, 0, 0);
+                }
+                i.icon-times-outline {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+                &:before {
+                    transform: translate3d(0, 2px, 0) scaleY(1);
+                    background-color: rgba($brand-danger, 1);
+                }
+            }
+        }
+        &:focus {
+            outline: none;
+            +label {
+                background-color: rgba(#fff, 0.5);
+                &:not(.invalid) {
+                    i[class^="icon-"] {
+                        opacity: 0;
+                        transform: translate3d(50%, 0, 0);
+                    }
+                }
+                &:after {
+                    background-color: rgba(#fff, 0);
+                    transform: rotate3d(1, 0, 0, 90deg);
+                }
+                &:before {
+                    transform: translate3d(0, 2px, 0) scaleY(1);
+                    background-color: rgba(#21b7dc, 1);
+                }
+                &.invalid {
+                    &:before {
+                        background-color: rgba($brand-danger, 1);
+                    }
                 }
             }
         }
