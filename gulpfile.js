@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
-    webpack = require('gulp-webpack'),
+    webpack = require('webpack-stream'),
     rename = require('gulp-rename'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
@@ -53,7 +53,6 @@ gulp.task("js", function() {
     return gulp.src("assets/js/dev/app.js")
         .pipe(babel())
         .pipe(webpack({
-            watch: true,
             output: {
                 path: path.resolve(__dirname, 'build'),
                 filename: 'app.js'
@@ -61,12 +60,15 @@ gulp.task("js", function() {
             module: {
                 loaders: [{
                     test: /\.js$/,
+                    exclude: /(node_modules|bower_components)/,
                     loader: 'babel-loader',
                     query: {
-                        presets: ['es2015']
+                        presets: ['es2015'],
+                        cacheDirectory: true
                     }
-                }, ],
+                }],
             },
+            devtool: 'source-map'
         }))
         .pipe(gulp.dest("assets/js/build"));
 });
