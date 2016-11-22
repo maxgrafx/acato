@@ -6,16 +6,18 @@ $enable-flex: true;
 @import "node_modules/bootstrap/scss/type";
 @import "node_modules/bootstrap/scss/grid";
 @import "node_modules/bootstrap/scss/utilities";
-header{
+header {
     height: 60vh;
     background-image: url(../../images/header.jpg);
     background-position: center;
     background-size: cover;
 }
-footer{
+
+footer {
     height: 25vh;
-    background-color: darken(#21b7dc,30);
+    background-color: darken(#21b7dc, 30);
 }
+
 .employees {
     &:hover {
         .img {
@@ -41,7 +43,8 @@ footer{
         .desc-wrapper {
             position: absolute;
             bottom: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             transform-origin: bottom;
             perspective-origin: center;
             transform: perspective(450px) translate3d(0, 0, 0);
@@ -56,6 +59,8 @@ footer{
             padding: 20px;
             color: #fff;
             margin: 0 -1rem;
+            left: 0;
+            right: 0;
             transform: rotate3d(1, 0, 0, -90deg);
             transform-origin: top;
             transition: transform 350ms ease-in-out;
