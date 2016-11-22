@@ -1,0 +1,58 @@
+@import "variables";
+
+@font-face {
+  font-family: 'icomoon';
+  src:
+    url('#{$icomoon-font-path}/icomoon.ttf?74rbvx') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?74rbvx') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?74rbvx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-times-outline {
+  &:before {
+    content: $icon-times-outline;
+  }
+}
+.icon-tick-outline {
+  &:before {
+    content: $icon-tick-outline;
+  }
+}
+.icon-mail {
+  &:before {
+    content: $icon-mail;
+  }
+}
+.icon-pen {
+  &:before {
+    content: $icon-pen;
+  }
+}
+.icon-phone-outline {
+  &:before {
+    content: $icon-phone-outline;
+  }
+}
+.icon-messages {
+  &:before {
+    content: $icon-messages;
+  }
+}
+
