@@ -116,9 +116,10 @@ footer {
         appearance: none;
         z-index: 10;
         border-radius: 0;
+        padding: 0.7rem;
         +label {
-            background-color: transparent;
-            transition: background-color 800ms ease-out 300ms;
+            background-color: rgba(#fff, 0.5);
+            transition: background-color 200ms ease-in-out;
             pointer-events: none;
             position: absolute;
             top: 0;
@@ -129,10 +130,10 @@ footer {
             margin: 0;
             i[class^="icon-"] {
                 position: absolute;
-                top: 0.7rem;
-                right: 0.7rem;
+                top: 0.6rem;
+                right: 0.6rem;
                 z-index: 2;
-                font-size: 2rem;
+                font-size: 1.6rem;
                 opacity: 1;
                 transition: opacity 350ms ease-out, transform 350ms ease-out;
             }
@@ -144,23 +145,24 @@ footer {
             &:after {
                 content: "";
                 position: absolute;
-                background-color: rgba(#fff, 1);
+                background-color: rgba(#fff, 0);
                 left: 0;
                 top: 0;
                 right: 0;
                 bottom: 0;
-                transition: background-color 350ms ease-in-out, transform 350ms ease-out;
+                transform: rotate3d(1, 0, 0, 90deg);
+                transition: background-color 350ms ease-in-out 100ms, transform 350ms ease-out 200ms;
                 transform-origin: bottom;
             }
             &:before {
                 content: "";
                 z-index: 1;
                 position: absolute;
-                background-color: rgba(#21b7dc, 0);
+                background-color: rgba(#21b7dc, 1);
                 height: 2px;
                 width: 100%;
                 bottom: 0;
-                transform: translate3d(0, 4px, 0) scaleY(0);
+                transform: translate3d(0, 0, 0) scaleY(1);
                 transition: background-color 350ms ease-in-out, transform 350ms ease-out;
             }
             &.invalid {
@@ -173,7 +175,7 @@ footer {
                     transform: translate3d(0, 0, 0);
                 }
                 &:before {
-                    transform: translate3d(0, 2px, 0) scaleY(1);
+                    transform: translate3d(0, 0, 0) scaleY(1);
                     background-color: rgba($brand-danger, 1);
                 }
             }
@@ -181,21 +183,22 @@ footer {
         &:focus {
             outline: none;
             +label {
-                background-color: rgba(#fff, 0.5);
+                background-color: rgba(#fff, 0);
                 i[class^="icon-"] {
                     opacity: 0;
-                    transform: translate3d(50%, 0, 0);
+                    transform: translate3d(0, 30%, 0);
                 }
                 &:after {
-                    background-color: rgba(#fff, 0);
-                    transform: rotate3d(1, 0, 0, 90deg);
+                    background-color: rgba(#fff, 1);
+                    transform: rotate3d(1, 0, 0, 0deg);
                 }
                 &:before {
-                    transform: translate3d(0, 2px, 0) scaleY(1);
-                    background-color: rgba(#21b7dc, 1);
+                    transform: translate3d(0, 2px, 0) scaleY(0);
+                    // background-color: rgba(#21b7dc, 0);
                 }
                 &.invalid {
                     &:before {
+                        transform: translate3d(0, 0, 0) scaleY(1);
                         background-color: rgba($brand-danger, 1);
                     }
                 }
