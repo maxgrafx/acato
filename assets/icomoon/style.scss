@@ -3,14 +3,14 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('#{$icomoon-font-path}/icomoon.ttf?74rbvx') format('truetype'),
-    url('#{$icomoon-font-path}/icomoon.woff?74rbvx') format('woff'),
-    url('#{$icomoon-font-path}/icomoon.svg?74rbvx#icomoon') format('svg');
+    url('#{$icomoon-font-path}/icomoon.ttf?x60dz9') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?x60dz9') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?x60dz9#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
-i {
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;

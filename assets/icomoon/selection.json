@@ -177,7 +177,7 @@
       "cssVars": true,
       "cssVarsFormat": "scss",
       "showSelector": true,
-      "selector": "i",
+      "selector": "",
       "noie8": true,
       "ie7": false
     },
