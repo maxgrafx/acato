@@ -93,13 +93,19 @@ footer {
 }
 
 .form {
+    background-color: #eee;
     h1 {
         color: #21b7dc;
     }
     p {
         color: #666;
     }
-    background-color: #eee;
+    .row {
+        margin-top: 1rem;
+        &:not(:last-of-type) {
+            margin-bottom: 2rem;
+        }
+    }
     .input-col {
         perspective-origin: center;
         transform: perspective(450px) translate3d(0, 0, 0);
@@ -165,6 +171,17 @@ footer {
                 transform: translate3d(0, 0, 0) scaleY(1);
                 transition: background-color 350ms ease-in-out, transform 350ms ease-out;
             }
+            
+            p.invalid {
+                top: 100%;
+                position: absolute;
+                transform: translate3d(0, -20%, 0);
+                transition: transform 350ms ease-out, opacity 350ms ease-out;
+                opacity: 0;
+                padding: 0.3rem 0.7rem;
+                font-size: 0.6rem;
+            }
+            
             &.invalid {
                 i[class^="icon-"] {
                     opacity: 0;
@@ -177,6 +194,10 @@ footer {
                 &:before {
                     transform: translate3d(0, 0, 0) scaleY(1);
                     background-color: rgba($brand-danger, 1);
+                }
+                p.invalid {
+                    transform: translate3d(0, 0, 0);
+                    opacity: 1;
                 }
             }
         }
