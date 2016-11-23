@@ -113,41 +113,45 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+                <form action="" class="mb-3">
                     <div class="container">
-                        <div class="row my-1">
+                        <div class="row">
                             <div class="col-xs-12 col-md-8 offset-md-2 input-col">
-                                <input class="pr-3" id="input_name" placeholder="Your name" type="text" name="name">
-                                <label for="input_name" class="invalid">
+                                <input data-type="text" data-required class="pr-3" id="input_name" placeholder="Your name" type="text" name="name">
+                                <label for="input_name">
                                     <i class="icon-times-outline text-danger"></i>
                                     <i class="icon-pen"></i>
+                                    <p class="invalid text-danger"><i>Name is required</i></p>
                                 </label>
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row">
                             <div class="col-xs-12 col-md-8 offset-md-2 input-col">
-                                <input class="pr-3" id="input_email" placeholder="Your E-mailaddress" type="text" name="email">
+                                <input data-type="email" data-required class="pr-3" id="input_email" placeholder="Your E-mailaddress" type="text" name="email">
                                 <label for="input_email">
                                     <i class="icon-times-outline text-danger"></i>
                                     <i class="icon-mail"></i>
+                                    <p class="invalid text-danger"><i>E-mailaddress is empty or invalid</i></p>
                                 </label>
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row">
                             <div class="col-xs-12 col-md-8 offset-md-2 input-col">
-                                <input class="pr-3" id="input_phone" placeholder="Your phone number" type="text" name="phone">
+                                <input data-type="phone" data-required class="pr-3" id="input_phone" placeholder="Your phone number" type="text" name="phone">
                                 <label for="input_phone">
                                     <i class="icon-times-outline text-danger"></i>
                                     <i class="icon-phone-outline"></i>
+                                    <p class="invalid text-danger"><i>Phone number is empty or invalid</i></p>
                                 </label>
                             </div>
                         </div>
-                        <div class="row my-1">
+                        <div class="row">
                             <div class="col-xs-12 col-md-8 offset-md-2 input-col">
-                                <textarea class="pr-3" name="comments" placeholder="Your comments" id="input_comments" cols="30" rows="10"></textarea>
+                                <textarea data-type="text" data-required class="pr-3" name="comments" placeholder="Your comments" id="input_comments" cols="30" rows="10"></textarea>
                                 <label for="input_comments">
                                     <i class="icon-times-outline text-danger"></i>
                                     <i class="icon-messages"></i>
+                                    <p class="invalid text-danger"><i>Comments are required</i></p>
                                 </label>
                             </div>
                         </div>
