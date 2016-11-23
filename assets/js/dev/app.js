@@ -1,3 +1,2 @@
-import Test from '../lib/test';
-let test = new Test();
-console.log('sergsert');
+import Form from '../lib/form.class';
+let form = new Form(document.querySelector('form'));

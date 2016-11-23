@@ -46,14 +46,13 @@
 
 	'use strict';
 	
-	var _test = __webpack_require__(1);
+	var _form = __webpack_require__(1);
 	
-	var _test2 = _interopRequireDefault(_test);
+	var _form2 = _interopRequireDefault(_form);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var test = new _test2.default();
-	console.log('sergsert');
+	var form = new _form2.default(document.querySelector('form'));
 
 /***/ },
 /* 1 */
@@ -62,7 +61,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+		value: true
 	});
 	
 	var _classCallCheck2 = __webpack_require__(2);
@@ -73,30 +72,33 @@
 	
 	var _createClass3 = _interopRequireDefault(_createClass2);
 	
-	var _point = __webpack_require__(22);
+	var _input = __webpack_require__(22);
 	
-	var _point2 = _interopRequireDefault(_point);
+	var _input2 = _interopRequireDefault(_input);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Test = function () {
-	    function Test() {
-	        (0, _classCallCheck3.default)(this, Test);
+	var From = function () {
+		function From(_target) {
+			(0, _classCallCheck3.default)(this, From);
 	
-	        this.point = new _point2.default(101, 50);
-	        console.log(this.point);
-	    }
+			this.target = _target;
+			this.inputs = this.target.querySelectorAll('[data-type]');
+			this._initInputs();
+		}
 	
-	    (0, _createClass3.default)(Test, [{
-	        key: 'center',
-	        get: function get() {
-	            return this.point;
-	        }
-	    }]);
-	    return Test;
+		(0, _createClass3.default)(From, [{
+			key: '_initInputs',
+			value: function _initInputs() {
+				for (var i = this.inputs.length - 1; i >= 0; i--) {
+					this.inputs[i] = new _input2.default(this.inputs[i]);
+				}
+			}
+		}]);
+		return From;
 	}();
 	
-	exports.default = Test;
+	exports.default = From;
 
 /***/ },
 /* 2 */
@@ -411,10 +413,10 @@
 /* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	    value: true
 	});
 	
 	var _classCallCheck2 = __webpack_require__(2);
@@ -427,24 +429,69 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Point = function () {
-		function Point(_x, _y) {
-			(0, _classCallCheck3.default)(this, Point);
+	var Input = function () {
+	    function Input(_target) {
+	        var _this = this;
 	
-			this.x = _x;
-			this.y = _y;
-		}
+	        (0, _classCallCheck3.default)(this, Input);
 	
-		(0, _createClass3.default)(Point, [{
-			key: "x",
-			value: function x() {
-				return this.x;
-			}
-		}]);
-		return Point;
+	        this.target = _target;
+	        this.required = this.target.hasAttribute('data-required');
+	        this.type = this.target.getAttribute('data-type');
+	        this.label = this.target.nextElementSibling;
+	        this.target.addEventListener('change', function () {
+	            return _this._change();
+	        });
+	        this.target.addEventListener('input', function () {
+	            return _this._change();
+	        });
+	    }
+	
+	    (0, _createClass3.default)(Input, [{
+	        key: '_change',
+	        value: function _change(_event) {
+	            if (this.required) {
+	                var valid = true;
+	                switch (this.type) {
+	                    case 'text':
+	                        valid = this.value !== '';
+	                        break;
+	                    case 'email':
+	                        valid = this.value !== '' && this._emailRegex.test(this.value);
+	                        break;
+	                    case 'phone':
+	                        valid = this.value !== '' && this._phoneRegex.test(this.value);
+	                        break;
+	                }
+	                if (!valid) {
+	                    this.label.classList.add('invalid');
+	                } else {
+	                    this.label.classList.remove('invalid');
+	                }
+	            }
+	        }
+	    }, {
+	        key: '_emailRegex',
+	        get: function get() {
+	            return (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+	            );
+	        }
+	    }, {
+	        key: '_phoneRegex',
+	        get: function get() {
+	            return (/^\+?\d{10}$/
+	            );
+	        }
+	    }, {
+	        key: 'value',
+	        get: function get() {
+	            return this.target.value;
+	        }
+	    }]);
+	    return Input;
 	}();
 	
-	exports.default = Point;
+	exports.default = Input;
 
 /***/ }
 /******/ ]);
