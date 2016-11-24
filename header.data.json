@@ -1,16 +1,21 @@
 [{
-    "name": "Header 1",
-    "img": "assets/images/header-1.jpg"
+    "name": "Kale chips cred",
+    "img": "assets/images/header-1.jpg",
+    "desc": "Semiotics cornhole microdosing hoodie neutra raclette"
 }, {
-    "name": "Header 2",
-    "img": "assets/images/header-2.jpg"
+    "name": "live-edge intelligentsia",
+    "img": "assets/images/header-2.jpg",
+    "desc": "biodiesel knausgaard, succulents lumbersexual cold-pressed"
 }, {
-    "name": "Header 3",
-    "img": "assets/images/header-3.jpg"
+    "name": "Roof party biodiesel",
+    "img": "assets/images/header-3.jpg",
+    "desc": "Af cornhole organic lomo tumblr flannel, green juice keytar"
 }, {
-    "name": "Header 4",
-    "img": "assets/images/header-4.jpg"
+    "name": "tattooed salvia",
+    "img": "assets/images/header-4.jpg",
+    "desc": "bicycle rights deep v pop-up venmo farm-to-table single-origin coffee lyft banh mi 8-bit"
 }, {
-    "name": "Header 5",
-    "img": "assets/images/header-5.jpg"
+    "name": "8-bit blog four loko ",
+    "img": "assets/images/header-5.jpg",
+    "desc": "Bushwick heirloom aesthetic, jianbing before they sold out trust fund YOLO"
 }]
