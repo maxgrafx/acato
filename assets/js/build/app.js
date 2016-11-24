@@ -58,6 +58,13 @@
 	
 	var form = new _form2.default(document.querySelector('form'));
 	var header = new _header2.default(document.querySelector('header .slider-container'), 'header.data.json');
+	
+	function is_touch_device() {
+	  return 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+	}
+	if (is_touch_device()) {
+	  document.querySelector('html').classList.add('is-touch-device');
+	}
 
 /***/ },
 /* 1 */
