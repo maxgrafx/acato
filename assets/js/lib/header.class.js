@@ -37,7 +37,8 @@ export default class Header {
     }
     _initTimeline(_data) {
         let slides = this._slides.slice();
-        slides.pop();
+        let lastSlide = slides.pop();
+        lastSlide.innerHTML = '';
         slides.forEach((_item, _index) => this._slide(_item, _index));
         this.timeline.play();
     }
@@ -45,6 +46,9 @@ export default class Header {
         let length = this._slides.length;
         let percent = 100 / length;
         let x = '-=' + String(percent) + '%';
-        this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5, ease:Cubic.easeOut }));
+        let title = _item.querySelector('h2');
+        let slideTween = TweenLite.to(this.target, 1, { x: x, delay: 2, ease: Cubic.easeOut });
+        let titleTween = TweenLite.fromTo(title, 1, { y: "+=100", alpha: 0 }, { y: 0, alpha: 1, delay: 0, ease: Cubic.easeOut });
+        this.timeline.add([titleTween, slideTween], "+=0", 'sequence', 0.5);
     }
 }

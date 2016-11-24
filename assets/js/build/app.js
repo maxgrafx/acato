@@ -237,7 +237,8 @@
 	            var _this2 = this;
 	
 	            var slides = this._slides.slice();
-	            slides.pop();
+	            var lastSlide = slides.pop();
+	            lastSlide.innerHTML = '';
 	            slides.forEach(function (_item, _index) {
 	                return _this2._slide(_item, _index);
 	            });
@@ -249,7 +250,10 @@
 	            var length = this._slides.length;
 	            var percent = 100 / length;
 	            var x = '-=' + String(percent) + '%';
-	            this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5, ease: Cubic.easeOut }));
+	            var title = _item.querySelector('h2');
+	            var slideTween = TweenLite.to(this.target, 1, { x: x, delay: 2, ease: Cubic.easeOut });
+	            var titleTween = TweenLite.fromTo(title, 1, { y: "+=100", alpha: 0 }, { y: 0, alpha: 1, delay: 0, ease: Cubic.easeOut });
+	            this.timeline.add([titleTween, slideTween], "+=0", 'sequence', 0.5);
 	        }
 	    }, {
 	        key: '_slides',
