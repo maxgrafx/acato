@@ -45,6 +45,6 @@ export default class Header {
         let length = this._slides.length;
         let percent = 100 / length;
         let x = '-=' + String(percent) + '%';
-        this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5 }));
+        this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5, ease:Cubic.easeOut }));
     }
 }

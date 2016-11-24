@@ -249,7 +249,7 @@
 	            var length = this._slides.length;
 	            var percent = 100 / length;
 	            var x = '-=' + String(percent) + '%';
-	            this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5 }));
+	            this.timeline.add(TweenLite.to(this.target, 1, { x: x, delay: 5, ease: Cubic.easeOut }));
 	        }
 	    }, {
 	        key: '_slides',
