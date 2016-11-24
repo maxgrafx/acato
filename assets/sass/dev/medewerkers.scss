@@ -13,7 +13,7 @@ header {
     background-image: url(../../images/header.jpg);
     background-position: center;
     background-size: cover;
-    // overflow: hidden;
+    overflow: hidden;
     ul{
         margin:0;
         padding:0;
@@ -27,6 +27,9 @@ header {
         margin:0;
         padding:0;
         float: left;
+    }
+    h2{
+        display: inline-block;
     }
     @include media-breakpoint-down(md){
         h2.display-1{
@@ -45,78 +48,91 @@ footer {
 }
 
 .employees {
-    &:hover {
-        .img {
-            &:before {
-                background-color: rgba(#fff, .6);
-            }
-        }
-    }
+    
     .img {
         background-position: center;
         background-size: cover;
         margin: 1rem;
-        &:before {
-            content: '';
-            position: absolute;
-            background-color: rgba(#fff, 0);
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            transition: background-color 350ms ease-in-out;
-        }
-        .desc-wrapper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            transform-origin: bottom;
-            perspective-origin: center;
-            transform: perspective(450px) translate3d(0, 0, 0);
-            transform-style: preserve-3d;
-            z-index: 1;
-            pointer-events: none;
-            transition: transform 350ms ease-in-out;
+    }
+    .desc {
+        background-color: #21b7dc;
+        padding: 20px;
+        color: #fff;
+    }
+}
+html:not(.is-touch-device){
+    .employees {
+        &:hover {
+            .img {
+                &:before {
+                    background-color: rgba(#fff, .6);
+                }
+            }
         }
         .desc {
             position: absolute;
-            background-color: #21b7dc;
-            padding: 20px;
-            color: #fff;
             margin: 0 -1rem;
             left: 0;
             right: 0;
-            transform: rotate3d(1, 0, 0, -90deg);
-            transform-origin: top;
-            transition: transform 350ms ease-in-out;
-            h4,
+            bottom:1rem;
+            z-index:1;
+            transform: perspective(450px) translate3d(0,50%,-100px) rotate3d(1,0,0,-90deg);
+            transform-style: preserve-3d;
+            transition: transform 350ms ease-out, opacity 350ms ease-out;
+            transform-origin: center;
+            pointer-events: none;
+            opacity: 0;
+            h5,
             p {
                 opacity: 0;
                 transition: opacity 350ms ease-in-out 200ms;
             }
         }
-        &:hover {
+        .img {
             &:before {
+                content: '';
+                position: absolute;
                 background-color: rgba(#fff, 0);
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                transition: background-color 350ms ease-in-out;
             }
-            .desc-wrapper {
-                pointer-events: all;
-                transform: perspective(450px) translate3d(0, -60px, 0);
-            }
-            .desc {
-                transform: rotate3d(1, 0, 0, 0deg);
-                h5 {
-                    opacity: 1;
-                }
-                p {
-                    opacity: 1;
+        }
+        .box-col{
+            &:hover{
+                .box{
+                    +.desc {
+                        pointer-events: all;
+                        opacity: 1;
+                        transform: perspective(450px) translate3d(0, 50px, 0) rotate3d(1, 0, 0, 0deg);
+                        h5 {
+                            opacity: 1;
+                        }
+                        p {
+                            opacity: 1;
+                        }
+                    }
+                    .img{
+                        &:before {
+                            background-color: rgba(#fff, 0);
+                        }
+                    }
                 }
             }
         }
     }
 }
-
+.is-touch-device{
+    .employees {
+        .img {
+        }
+        .desc {
+            margin-top: -1rem;
+        }
+    }
+}
 .form {
     background-color: #eee;
     h1 {
@@ -250,7 +266,6 @@ footer {
         }
     }
 }
-
 .box {
     position: relative;
     width: 100%;
@@ -270,3 +285,4 @@ footer {
     padding-top: 100%;
     /* initial ratio of 1:1*/
 }
+
