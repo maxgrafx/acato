@@ -216,6 +216,9 @@
 	        }).always(function () {
 	            return _this._jsonAlways();
 	        });
+	        window.addEventListener('resize', function (_event) {
+	            return _this._resize(_event);
+	        });
 	    }
 	
 	    _createClass(Header, [{
@@ -233,14 +236,14 @@
 	            var html = '';
 	            var percent = Math.floor(Number(100 / _data.length).toFixed(6) * 100000) / 100000;
 	            _data.forEach(function (_item, _index) {
-	                return html += '\n            <li style="width:' + percent + '%;background-image:url(' + _item.img + ')">\n                <div class="container h-100">\n                    <div class="row flex-items-xs-middle h-100">\n                        <div class="col-xs-12 text-xs-center text-white">\n                            <h2 class="display-1">' + _item.name + '</h2>\n                        </div>\n                    </div>\n                </div>\n            </li>\n        ';
+	                return html += '\n            <li style="width:' + percent + '%;background-image:url(' + _item.img + ')">\n                <div class="container h-100">\n                    <div class="row flex-items-xs-middle h-100">\n                        <div class="col-xs-12 text-xs-center text-white">\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<h2 class="display-1">\n\t\t\t\t\t\t\t\t\t<span class="title">' + _item.name + '</span>\n\t\t\t\t\t\t\t\t\t<span class="line"></span>\n\t\t\t\t\t\t\t\t</h2>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t<span class="title">' + _item.desc + '</span>\n\t\t\t\t\t\t\t\t\t<span class="line"></span>\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n                        </div>\n                    </div>\n                </div>\n            </li>\n        ';
 	            });
 	            this.target.innerHTML = html;
-	            this._initTimeline(_data);
+	            this._initTimeline(0);
 	        }
 	    }, {
 	        key: '_initTimeline',
-	        value: function _initTimeline(_data) {
+	        value: function _initTimeline(_offset) {
 	            var _this2 = this;
 	
 	            var slides = this._slides.slice();
@@ -249,7 +252,8 @@
 	            slides.forEach(function (_item, _index) {
 	                return _this2._slide(_item, _index);
 	            });
-	            this.timeline.play();
+	            TweenLite.set(this.target, { clearProps: 'x' });
+	            this.timeline.play(_offset);
 	        }
 	    }, {
 	        key: '_slide',
@@ -257,10 +261,31 @@
 	            var length = this._slides.length;
 	            var percent = 100 / length;
 	            var x = '-=' + String(percent) + '%';
-	            var title = _item.querySelector('h2');
-	            var slideTween = TweenLite.to(this.target, 1, { x: x, delay: 2, ease: Cubic.easeOut });
-	            var titleTween = TweenLite.fromTo(title, 1, { y: "+=100", alpha: 0 }, { y: 0, alpha: 1, delay: 0, ease: Cubic.easeOut });
-	            this.timeline.add([titleTween, slideTween], "+=0", 'sequence', 0.5);
+	            var title = _item.querySelector('h2 .title');
+	            var titleLine = _item.querySelector('h2 .line');
+	            var desc = _item.querySelector('p .title');
+	            var descLine = _item.querySelector('p .line');
+	            TweenLite.set([desc, title, titleLine, descLine], { clearProps: 'all' });
+	            var slideTween = TweenLite.to(this.target, 1, { x: x, delay: 5, ease: Cubic.easeOut });
+	            var titleLineTween = TweenLite.from(titleLine, .2, { width: 0, delay: 0, ease: Cubic.easeOut });
+	            var titleTween = TweenLite.from(title, .1, { alpha: 0, delay: 0, ease: Cubic.easeOut });
+	            var titleLineTween2 = TweenLite.to(titleLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeOut });
+	            var descLineTween = TweenLite.from(descLine, .2, { width: 0, delay: 0, ease: Cubic.easeOut });
+	            var descTween = TweenLite.from(desc, .1, { alpha: 0, delay: 0, ease: Cubic.easeOut });
+	            var descLineTween2 = TweenLite.to(descLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeOut });
+	            this.timeline.add([slideTween], "+=0", 'sequence', 0);
+	            this.timeline.add([titleLineTween, titleTween, titleLineTween2], "-=6", 'sequence', 0);
+	            this.timeline.add([descLineTween, descTween, descLineTween2], "-=5.9", 'sequence', 0);
+	        }
+	    }, {
+	        key: '_resize',
+	        value: function _resize() {
+	            var offset = this.timeline.time();
+	            console.log(offset);
+	            this.timeline.clear();
+	            this.timeline.kill();
+	            this.timeline = new TimelineMax({ repeat: -1, paused: true });
+	            this._initTimeline(offset);
 	        }
 	    }, {
 	        key: '_slides',
