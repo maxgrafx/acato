@@ -13,6 +13,31 @@ header {
     background-image: url(../../images/header.jpg);
     background-position: center;
     background-size: cover;
+    // overflow: hidden;
+    ul{
+        margin:0;
+        padding:0;
+        list-style-type: none;
+    }
+    li {
+        display: inline-block;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        margin:0;
+        padding:0;
+        float: left;
+    }
+    @include media-breakpoint-down(md){
+        h2.display-1{
+            font-size: 4rem;
+        }
+    }
+    @include media-breakpoint-down(sm){
+        h2.display-1{
+            font-size: 3rem;
+        }
+    }
 }
 
 footer {
@@ -171,7 +196,6 @@ footer {
                 transform: translate3d(0, 0, 0) scaleY(1);
                 transition: background-color 350ms ease-in-out, transform 350ms ease-out;
             }
-            
             p.invalid {
                 top: 100%;
                 position: absolute;
@@ -181,7 +205,6 @@ footer {
                 padding: 0.3rem 0.7rem;
                 font-size: 0.6rem;
             }
-            
             &.invalid {
                 i[class^="icon-"] {
                     opacity: 0;

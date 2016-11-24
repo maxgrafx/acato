@@ -1,1 +1,16 @@
-[{ "name": "Header 1" }, { "name": "Header 2" }, { "name": "Header 3" }]
+[{
+    "name": "Header 1",
+    "img": "assets/images/header-1.jpg"
+}, {
+    "name": "Header 2",
+    "img": "assets/images/header-2.jpg"
+}, {
+    "name": "Header 3",
+    "img": "assets/images/header-3.jpg"
+}, {
+    "name": "Header 4",
+    "img": "assets/images/header-4.jpg"
+}, {
+    "name": "Header 5",
+    "img": "assets/images/header-5.jpg"
+}]

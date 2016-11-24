@@ -64,7 +64,6 @@ gulp.task("js", function() {
                     loader: 'babel-loader',
                     query: {
                         presets: ['es2015'],
-                        plugins: ["external-helpers", "babel-plugin-transform-runtime"],
                         cacheDirectory: true
 
                     }
