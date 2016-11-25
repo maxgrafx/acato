@@ -56,6 +56,7 @@ export default class Header {
         this.timeline.play(_offset);
     }
     _slide(_item, _index) {
+        console.log(_index);
         let length = this._slides.length;
         let percent = 100 / length;
         let x = '-=' + String(percent) + '%';

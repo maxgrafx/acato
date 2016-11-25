@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     webpack = require('webpack-stream'),
     rename = require('gulp-rename'),
+    uglify = require('gulp-uglify'),
     autoprefixer = require('gulp-autoprefixer'),
     cleanCSS = require('gulp-clean-css'),
     path = require('path'),
@@ -11,6 +12,19 @@ var gulp = require('gulp'),
     fs = require('fs'),
     del = require('del'),
     end_dependencies = ['sass', 'js'],
+    uglifyProps = {
+        mangle: true,
+        compress: {
+            sequences: true,
+            dead_code: true,
+            conditionals: true,
+            booleans: true,
+            loops: true,
+            unused: false,
+            warnings: false,
+            drop_console: false
+        }
+    },
     watchError = function(event) {
         console.log('Event type: ' + event.type); // added, changed, or deleted
         console.log('Event path: ' + event.path); // The path of the modified file
@@ -69,6 +83,22 @@ gulp.task("js", function() {
                     }
                 }],
             },
+            plugins: [
+                new webpack.webpack.optimize.UglifyJsPlugin({
+                    minimize: true,
+                    mangle: true,
+                    compress: {
+                        sequences: true,
+                        dead_code: true,
+                        conditionals: true,
+                        booleans: true,
+                        loops: true,
+                        unused: false,
+                        warnings: false,
+                        drop_console: false
+                    }
+                })
+            ],
             devtool: 'source-map'
         }))
         .pipe(gulp.dest("assets/js/build"));
