@@ -64,16 +64,16 @@ export default class Header {
         let desc = _item.querySelector('p .title');
         let descLine = _item.querySelector('p .line');
         TweenLite.set([desc, title, titleLine, descLine], { clearProps: 'all' });
-        let slideTween = TweenLite.to(this.target, 1, { x: x, delay: 5, ease: Cubic.easeOut });
-        let titleLineTween = TweenLite.from(titleLine, .2, { width: 0, delay: 0, ease: Cubic.easeOut });
+        let slideTween = TweenLite.to(this.target, 2, { x: x, delay: 5, ease: Cubic.easeInOut });
+        let titleLineTween = TweenLite.from(titleLine, .2, { width: 0, delay: 0, ease: Cubic.easeInOut });
         let titleTween = TweenLite.from(title, .1, { alpha: 0, delay: 0, ease: Cubic.easeOut });
-        let titleLineTween2 = TweenLite.to(titleLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeOut });
-        let descLineTween = TweenLite.from(descLine, .2, { width: 0, delay: 0, ease: Cubic.easeOut });
+        let titleLineTween2 = TweenLite.to(titleLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeInOut });
+        let descLineTween = TweenLite.from(descLine, .2, { width: 0, delay: 0, ease: Cubic.easeInOut });
         let descTween = TweenLite.from(desc, .1, { alpha: 0, delay: 0, ease: Cubic.easeOut });
-        let descLineTween2 = TweenLite.to(descLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeOut });
+        let descLineTween2 = TweenLite.to(descLine, .4, { left: '100%', width: 0, delay: 0, ease: Cubic.easeInOut });
         this.timeline.add([slideTween], "+=0", 'sequence', 0);
-        this.timeline.add([titleLineTween, titleTween, titleLineTween2], "-=6", 'sequence', 0);
-        this.timeline.add([descLineTween, descTween, descLineTween2], "-=5.9", 'sequence', 0);
+        this.timeline.add([titleLineTween, titleTween, titleLineTween2], "-=7", 'sequence', 0);
+        this.timeline.add([descLineTween, descTween, descLineTween2], "-=6.9", 'sequence', 0);
     }
     _resize() {
     	let offset = this.timeline.time();
