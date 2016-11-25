@@ -1,5 +1,7 @@
-export default class Input {
+import { EventEmitter } from 'events';
+export default class Input extends EventEmitter {
     constructor(_target) {
+        super();
         this.target = _target;
         this.required = this.target.hasAttribute('data-required');
         this.type = this.target.getAttribute('data-type');
@@ -13,28 +15,32 @@ export default class Input {
     get _phoneRegex() {
         return /^\+?\d{10}$/;
     }
-    get value(){
-    	return this.target.value;
+    get value() {
+        return this.target.value;
+    }
+    get valid() {
+        let valid = true;
+        switch (this.type) {
+            case 'text':
+                valid = this.value !== '';
+                break;
+            case 'email':
+                valid = this.value !== '' && this._emailRegex.test(this.value);
+                break;
+            case 'phone':
+                valid = this.value !== '' && this._phoneRegex.test(this.value);
+                break;
+        }
+        return valid;
     }
     _change(_event) {
         if (this.required) {
-            let valid = true;
-            switch (this.type) {
-                case 'text':
-                    valid = this.value !== '';
-                    break;
-                case 'email':
-                    valid = this.value !== '' && this._emailRegex.test(this.value);
-                    break;
-                case 'phone':
-                    valid = this.value !== '' && this._phoneRegex.test(this.value);
-                    break;
-            }
-            if (!valid) {
+            if (!this.valid) {
                 this.label.classList.add('invalid');
             } else {
                 this.label.classList.remove('invalid');
             }
         }
+        this.emit('input:change');
     }
 }
