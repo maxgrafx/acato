@@ -8,6 +8,7 @@ $enable-flex: true;
 @import "node_modules/bootstrap/scss/type";
 @import "node_modules/bootstrap/scss/grid";
 @import "node_modules/bootstrap/scss/utilities";
+@import "node_modules/bootstrap/scss/buttons";
 header {
     height: 60vh;
     background-image: url(../../images/header.jpg);
