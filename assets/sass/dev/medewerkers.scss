@@ -2,6 +2,10 @@ $icomoon-font-path: "../../icomoon/fonts/";
 @import "assets/icomoon/style.scss";
 @import "node_modules/bootstrap/scss/variables";
 $enable-flex: true;
+$btn-border-radius: 0;
+$btn-border-radius-lg: 0;
+$btn-border-radius-sm: 0;
+$btn-primary-bg: darken(#21b7dc, 30);
 @import "node_modules/bootstrap/scss/mixins";
 @import "node_modules/bootstrap/scss/normalize";
 @import "node_modules/bootstrap/scss/reboot";
@@ -28,9 +32,6 @@ header {
         margin:0;
         padding:0;
         float: left;
-    }
-    .h2-wrapper{
-
     }
     h2{
     }
@@ -168,7 +169,7 @@ html:not(.is-touch-device){
         transform: perspective(450px) translate3d(0, 0, 0);
         transform-style: preserve-3d;
     }
-    input,
+    input[type='text'],
     textarea {
         color: #333;
         position: relative;
@@ -300,5 +301,8 @@ html:not(.is-touch-device){
     display: block;
     padding-top: 100%;
     /* initial ratio of 1:1*/
+}
+.btn{
+    transition: background-color 350ms ease-out, color 350ms ease-out;
 }
 
