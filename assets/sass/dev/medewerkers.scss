@@ -25,6 +25,7 @@ header {
         list-style-type: none;
     }
     li {
+        position: relative;
         display: inline-block;
         height: 100%;
         background-position: center;
@@ -32,13 +33,17 @@ header {
         margin:0;
         padding:0;
         float: left;
-    }
-    h2{
+        &:before{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(#000, .5) 0%, transparent 100%);
+        }
     }
     p,h2{
         display: inline-block;
         position: relative;
-        // margin: 0;
         .line{
             position: absolute;
             left:0;
@@ -105,6 +110,12 @@ html:not(.is-touch-device){
                 transition: opacity 350ms ease-in-out 200ms;
             }
         }
+        @include media-breakpoint-down(sm){
+            .desc {
+                position: absolute;
+                margin: 0 0.5rem;
+            }
+        }
         .img {
             &:before {
                 content: '';
@@ -140,13 +151,60 @@ html:not(.is-touch-device){
             }
         }
     }
+    .box {
+        position: relative;
+        width: 100%;
+        /* desired width */
+        >div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    .box:before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+        /* initial ratio of 1:1*/
+    }
 }
 .is-touch-device{
     .employees {
-        .img {
+        .box{
+            position: relative;
+            min-height: 200px;
+            z-index: 1;
+            background-color: #fff;
+            .img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin-bottom: 0;
+            }
         }
         .desc {
+            position: relative;
+            z-index: 2;
+            min-height: 100px;
             margin-top: -1rem;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            color: #333;
+            background-color: transparent;
+            h5{
+                &:first-of-type{
+                    background-color: #21b7dc;
+                    color: #fff;
+                    padding: 0.3rem;
+                    margin-left: -0.3rem;
+                    margin-right: -0.3rem;
+                }
+            }
         }
     }
 }
@@ -271,7 +329,6 @@ html:not(.is-touch-device){
                 }
                 &:before {
                     transform: translate3d(0, 2px, 0) scaleY(0);
-                    // background-color: rgba(#21b7dc, 0);
                 }
                 &.invalid {
                     &:before {
@@ -283,25 +340,7 @@ html:not(.is-touch-device){
         }
     }
 }
-.box {
-    position: relative;
-    width: 100%;
-    /* desired width */
-    >div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-    }
-}
 
-.box:before {
-    content: "";
-    display: block;
-    padding-top: 100%;
-    /* initial ratio of 1:1*/
-}
 .btn{
     transition: background-color 350ms ease-out, color 350ms ease-out;
 }
